@@ -13,6 +13,7 @@ Optional:
 - Shrink Tube
 - Cable Management Sleeve
 - 3d printed housing (STL uploaded in repo)
+- Tint film (i applied a layer to the front since the LED's are so bright)
 
 # Guide
 - Flash the pico with CircuitPython 9.x
