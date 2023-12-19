@@ -127,7 +127,11 @@ display = framebufferio.FramebufferDisplay(matrix, auto_refresh=False)
 display.rotation = 180
 
 def createTimeValues():
-    current_time_struct = ntp.datetime
+    try:
+        current_time_struct = ntp.datetime
+    except:
+        time.sleep(5)
+        createTimeValues()
 
     # Adjust UTC time to CET (UTC+1)
     cet_hour = (current_time_struct.tm_hour + 1) % 24
@@ -182,4 +186,4 @@ def createTimeValues():
 while True:
     display.root_group = createTimeValues()
     display.refresh(minimum_frames_per_second=0)
-    time.sleep(1)
+    time.sleep(2)
