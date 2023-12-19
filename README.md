@@ -25,3 +25,4 @@ Optional:
 # Notes
 By default it displays UTC, CET, and IST. You can modify the script to display timezones of your choice. The lines displaying the text and the amount to add to hours/mins are what you need. 
 Its not written in the best way, but it works, and that took me long enough to figure out with CircuitPython being meant for Arduino and not the Pico.
+Currently it queries the NTP server every second, which can cause timeouts... working on that fix...
