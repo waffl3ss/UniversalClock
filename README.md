@@ -14,6 +14,7 @@ Optional:
 
 # Guide
 - Flash the pico with CircuitPython 9.x
+- Modify secrets.py with your SSID information
 - Upload main.py, secrets.py, and the whole lib folder to the root directory of the device
 - Follow the guide for wiring at https://www.waveshare.com/wiki/RGB-Matrix-P2.5-64x32#Working_With_Raspberry_Pi_Pico
 - Plug in and happy day
