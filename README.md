@@ -1,6 +1,8 @@
 # UniversalClock
 Customizable Universal Clock using a Pico and RGB Matrix.
 
+![alt text](https://raw.githubusercontent.com/waffl3ss/UniversalClock/main/Example.jpg)
+
 # Parts List
 Required:
 - Raspberry Pi Pico WH
