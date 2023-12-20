@@ -116,22 +116,24 @@ STB.deinit()
 OE.deinit()
 
 matrix = rgbmatrix.RGBMatrix(
-    width=64, height=32, bit_depth=1,
+    width=64,
+    height=32,
+    bit_depth=1,
     rgb_pins=[board.GP2, board.GP3, board.GP4, board.GP5, board.GP8, board.GP9],
     addr_pins=[board.GP10, board.GP16, board.GP18, board.GP20],
-    clock_pin=board.GP11, latch_pin=board.GP12, output_enable_pin=board.GP13,
-    doublebuffer=True)
+    clock_pin=board.GP11,
+    latch_pin=board.GP12,
+    output_enable_pin=board.GP13,
+    doublebuffer=True,
+)
 
 display = framebufferio.FramebufferDisplay(matrix, auto_refresh=False)
 
 display.rotation = 180
 
+
 def createTimeValues():
-    try:
-        current_time_struct = ntp.datetime
-    except:
-        time.sleep(5)
-        createTimeValues()
+    current_time_struct = ntp.datetime
 
     # Adjust UTC time to CET (UTC+1)
     cet_hour = (current_time_struct.tm_hour + 1) % 24
@@ -141,38 +143,28 @@ def createTimeValues():
     ist_minute = (current_time_struct.tm_min + 30) % 60
 
     current_time_string_utc = "{:02}:{:02}".format(
-        current_time_struct.tm_hour,
-        current_time_struct.tm_min
+        current_time_struct.tm_hour, current_time_struct.tm_min
     )
 
-    current_time_string_cet = "{:02}:{:02}".format(
-        cet_hour,
-        current_time_struct.tm_min
-    )
+    current_time_string_cet = "{:02}:{:02}".format(cet_hour, current_time_struct.tm_min)
 
-    current_time_string_ist = "{:02}:{:02}".format(
-        ist_hour,
-        ist_minute
-    )
+    current_time_string_ist = "{:02}:{:02}".format(ist_hour, ist_minute)
 
     line1 = adafruit_display_text.label.Label(
-        terminalio.FONT,
-        color=0xff0000,
-        text="UTC " + str(current_time_string_utc))
+        terminalio.FONT, color=0xFF0000, text="UTC " + str(current_time_string_utc)
+    )
     line1.x = 5
     line1.y = 5
 
     line2 = adafruit_display_text.label.Label(
-        terminalio.FONT,
-        color=0xff0000,
-        text="CET " + str(current_time_string_cet))
+        terminalio.FONT, color=0xFF0000, text="CET " + str(current_time_string_cet)
+    )
     line2.x = 5
     line2.y = 16
 
     line3 = adafruit_display_text.label.Label(
-        terminalio.FONT,
-        color=0xff0000,
-        text="IST " + str(current_time_string_ist))
+        terminalio.FONT, color=0xFF0000, text="IST " + str(current_time_string_ist)
+    )
     line3.x = 5
     line3.y = 27
 
@@ -183,7 +175,13 @@ def createTimeValues():
 
     return g
 
+
 while True:
-    display.root_group = createTimeValues()
-    display.refresh(minimum_frames_per_second=0)
-    time.sleep(2)
+    try:
+        display.root_group = createTimeValues()
+        display.refresh(minimum_frames_per_second=0)
+        time.sleep(1)
+    except Exception as e:
+        print("!-!-!-!-!ERROR!-!-!-!-!")
+        print(e)
+        time.sleep(2)
