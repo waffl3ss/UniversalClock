@@ -11,9 +11,9 @@ Required:
 
 Optional:
 - Shrink Tube
-- Cable Management Sleeve
-- 3d printed housing (STL uploaded in repo)
-- Tint film (i applied a layer to the front since the LED's are so bright)
+- Cable Management Sleeve (or a really long heat shrink, but just something to cover cords all the way is the idea)
+- 3d printed housing (STL uploaded in repo. modeled with the long legs on the matrix)
+- Tint film (I applied a layer to the front since the LEDs are so bright)
 
 # Guide
 - Flash the pico with CircuitPython 9.x
@@ -25,4 +25,3 @@ Optional:
 # Notes
 By default it displays UTC, CET, and IST. You can modify the script to display timezones of your choice. The lines displaying the text and the amount to add to hours/mins are what you need. 
 Its not written in the best way, but it works, and that took me long enough to figure out with CircuitPython being meant for Arduino and not the Pico.
-Currently it queries the NTP server every second, which can cause timeouts... working on that fix...
